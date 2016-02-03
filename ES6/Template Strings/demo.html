@@ -18,18 +18,18 @@
                 <p>${data.text}</p>
             `;
             
-            // Demo 2
-            function SaferHTML(templateData) {
+            // Demo 2：Tagged Templates
+            var SaferHTML = function (templateData) {
                 var s = templateData[0];
                 for (var i = 1; i < arguments.length; i++) {
                     var arg = String(arguments[i]);
 
-                    // 转义占位符中的特殊字符。
+                    // 转义数据中的特殊字符。
                     s += arg.replace(/&/g, "&")
                             .replace(/</g, "&lt;")
                             .replace(/>/g, "&gt;");
 
-                    // 不转义模板中的特殊字符。
+                    // 模版是程序员写的，可以不用转义模板中的特殊字符。
                     s += templateData[i];
                 }
                 return s;
@@ -40,7 +40,6 @@
                 <h1>Hi, ${data.name}</h1>
                 <p>${data.text}</p>
             `;
-           
         </script>
     </body>
 </html>
