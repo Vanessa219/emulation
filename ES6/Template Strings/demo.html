@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Template Strings</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <div id="ts1"></div>
+        <div id="ts2"></div>
+        <script>
+            // Demo 1
+            var data = {
+                name: 'Template Strings1',
+                text: '我是一个不安全的孩纸。<style>#ts1{width: 80px;overflow: auto}<\/style>'
+            };
+            document.getElementById('ts1').innerHTML = `
+                <h1>Hi, ${data.name}</h1>
+                <p>${data.text}</p>
+            `;
+            
+            // Demo 2
+            function SaferHTML(templateData) {
+                var s = templateData[0];
+                for (var i = 1; i < arguments.length; i++) {
+                    var arg = String(arguments[i]);
+
+                    // 转义占位符中的特殊字符。
+                    s += arg.replace(/&/g, "&")
+                            .replace(/</g, "&lt;")
+                            .replace(/>/g, "&gt;");
+
+                    // 不转义模板中的特殊字符。
+                    s += templateData[i];
+                }
+                return s;
+            }
+            data.name = 'Template Strings2';
+            data.text = '我是一个有点安全的孩纸。<style>#ts2{width: 80px;overflow: auto}<\/style>';
+            document.getElementById('ts2').innerHTML =  SaferHTML`
+                <h1>Hi, ${data.name}</h1>
+                <p>${data.text}</p>
+            `;
+           
+        </script>
+    </body>
+</html>
