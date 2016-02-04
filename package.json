@@ -1,0 +1,29 @@
+{
+    "name": "emulation",
+    "version": "1.0.0",
+    "description": "房星科技技术分享。",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/Vanessa219/emulation.git"
+    },
+    "author": "Vanessa <lly219@gmail.com> (http://vanessa.b3log.org)",
+    "license": "Apache License",
+    "bugs": {
+        "url": "https://github.com/Vanessa219/emulation/issues"
+    },
+    "dependencies": {
+        "gulp": "*",
+        "gulp-babel": "*",
+        "babel-preset-es2015": "*"
+    },
+    "homepage": "https://github.com/Vanessa219/emulation#readme",
+    "maintainers": [
+        {
+            "name": "Vanessa",
+            "email": "lly219@gmail.com"
+        }
+    ]
+}
