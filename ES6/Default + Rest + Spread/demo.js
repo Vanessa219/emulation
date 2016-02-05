@@ -1,3 +1,5 @@
+"use strict";
+
 /*
  * Copyright (c) 2012-2016, b3log.org & hacpai.com & fangstar.com
  *
@@ -18,12 +20,12 @@
  * @file Default + Rest + Spread.
  * 
  * @author <a href="mailto:liliyuan@fangstar.net">Liyuan Li</a>
- * @version 0.1.0.0, Feb 4, 2016 
+ * @version 0.1.0.1, Feb 5, 2016 
  */
 // Default
 var demo1 = function (animals2="tigers", animals3 = (animals2 === "bears") ? "sealions" : "bears") {
     return `Lions and ${animals2} and ${animals3}! Oh my!`;
-}
+};
 console.log('demo1: ' + demo1('bears'));
 console.log('demo1: ' + demo1(undefined, 'unicorns'));
 
@@ -37,7 +39,7 @@ console.log('demo2: ' + demo2(3, "hello", true));
 // Spread
 var demo3 = function f(x, y, z) {
     return x + y + z;
-}
+};
 // Pass each elem of array as argument
 console.log('demo3: ' + demo3(...[1, 2, 3]));
 
@@ -49,5 +51,5 @@ var demo4 = function (sentence, ...words) {
         }
     }
     return true;
-}
+};
 console.log('demo4: ' + demo4('happy new year!', 'happy', 'new', 'year'));
