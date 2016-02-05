@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2012-2016, b3log.org & hacpai.com & fangstar.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,26 +15,14 @@
  */
 
 /**
- * @file emulation tool.
+ * @file Destructuring.
  * 
  * @author <a href="mailto:liliyuan@fangstar.net">Liyuan Li</a>
- * @version 0.1.0.0, Feb 4, 2016 
+ * @version 0.1.0.0, Feb 5, 2016 
  */
-var gulp = require("gulp");
-var babel = require("gulp-babel");
+"use strict";
+export function sum(x, y) {
+  return x + y;
+}
 
-gulp.task("default", function () {
-    // wserify + babelify or webpack + babel-loader.
-    var browserify = require("browserify");
-    var fs = require("fs");
-    browserify(["./ES6/Destructuring/demo.js"])
-            .transform("babelify", {presets: ["es2015"]})
-            .bundle()
-            .pipe(fs.createWriteStream("./ES6/Destructuring/dist/demo.js"));
-
-    return gulp.src("./ES6/Default + Rest + Spread/demo.js")
-            .pipe(babel({
-                "presets": ["es2015"]
-            }))
-            .pipe(gulp.dest("./ES6/Default + Rest + Spread/dist"));
-});
+export var pi = 3.141593;

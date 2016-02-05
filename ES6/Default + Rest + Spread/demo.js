@@ -22,6 +22,7 @@
  * @author <a href="mailto:liliyuan@fangstar.net">Liyuan Li</a>
  * @version 0.1.0.1, Feb 5, 2016 
  */
+"use strict";
 // Default
 var demo1 = function (animals2="tigers", animals3 = (animals2 === "bears") ? "sealions" : "bears") {
     return `Lions and ${animals2} and ${animals3}! Oh my!`;
