@@ -20,9 +20,11 @@
  * @file Default + Rest + Spread.
  * 
  * @author <a href="mailto:liliyuan@fangstar.net">Liyuan Li</a>
- * @version 0.1.0.0, Feb 4, 2016 
+ * @version 0.1.0.1, Feb 5, 2016 
  */
+"use strict";
 // Default
+
 var demo1 = function demo1() {
     var animals2 = arguments.length <= 0 || arguments[0] === undefined ? "tigers" : arguments[0];
     var animals3 = arguments.length <= 1 || arguments[1] === undefined ? animals2 === "bears" ? "sealions" : "bears" : arguments[1];
