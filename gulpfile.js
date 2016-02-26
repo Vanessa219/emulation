@@ -24,7 +24,7 @@
 var babel = require("gulp-babel");
 
 gulp.task("default", function () {
-    // wserify + babelify or webpack + babel-loader.
+    // browserify + babelify or webpack + babel-loader.
     var browserify = require("browserify");
     var fs = require("fs");
     browserify(["./ES6/Destructuring/demo.js"])

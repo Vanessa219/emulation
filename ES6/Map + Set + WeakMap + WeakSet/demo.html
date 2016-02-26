@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Symbols</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <a href="http://www.infoq.com/cn/articles/es6-in-depth-collections?utm_campaign=rightbar_v2&utm_source=infoq&utm_medium=articles_link&utm_content=link_text"
+           target="_blank">深入浅出ES6（十）：集合</a> 
+        <pre>
+"use strict";
+// 第七种原始类型
+console.log('typeof(Symbol()) = ', typeof(Symbol()));
+
+// symbol 获取
+var person = {
+    name: 'vanessa',
+    age: 30
+},
+weight = Symbol("weight");
+person[weight] = '45.5';
+console.log('person[weight] =', person[weight], '; person.weight =', person.weight);
+
+// 循环时 symbol 会被过滤
+for (var key in person) {
+    console.log('for in: key =', key, '; value =', person[key]);
+}
+
+// 获取 symbol
+console.log('Object.keys(person):', Object.keys(person));
+console.log('Object.getOwnPropertySymbols(person):', Object.getOwnPropertySymbols(person));
+
+// can't convert symbol to string
+var sym1 = Symbol();
+`your symbol is ${sym1}`;
+        </pre>
+        <script>
+            "use strict";
+            // 第七种原始类型
+            console.log('typeof(Symbol()) = ', typeof(Symbol()));
+            
+            // symbol 获取
+            var person = {
+                name: 'vanessa',
+                age: 30
+            },
+            weight = Symbol("weight");
+            person[weight] = '45.5';
+            console.log('person[weight] =', person[weight], '; person.weight =', person.weight);
+            
+            // 循环时 symbol 会被过滤
+            for (var key in person) {
+                console.log('for in: key =', key, '; value =', person[key]);
+            }
+            
+            // 获取 symbol
+            console.log('Object.keys(person):', Object.keys(person));
+            console.log('Object.getOwnPropertySymbols(person):', Object.getOwnPropertySymbols(person));
+            
+            // can't convert symbol to string
+            var sym1 = Symbol();
+            `your symbol is ${sym1}`;
+        </script>
+    </body>
+</html>
