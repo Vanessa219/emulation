@@ -9,30 +9,46 @@
            target="_blank">深入浅出ES6（十）：集合</a> 
         <pre>
 "use strict";
-// 第七种原始类型
-console.log('typeof(Symbol()) = ', typeof(Symbol()));
+// Sets
+var family = new Set();
+family.add("Sunny").add("Vanessa").add("Erik").add('Daniel').delete('Sunny');
+family.forEach(function () {
+    console.log('family iterator:', arguments);
+});
+console.log('family.size: ', family.size, '; family.has("Sunny"): ', family.has("Sunny"));
+console.log('family.keys: ', family.keys(), '; family.values: ', family.values(), ';family.entries(): ', family.entries());
+family.clear();
+console.log('after family.clear():', family);
 
-// symbol 获取
-var person = {
-    name: 'vanessa',
-    age: 30
-},
-weight = Symbol("weight");
-person[weight] = '45.5';
-console.log('person[weight] =', person[weight], '; person.weight =', person.weight);
+// Maps
+var map = new Map();
+map.set('hello', 'family').set('hi', 'son');
+map.set(new Set('FAMILY'), 'father and mather, I love you');
+map.forEach(function () {
+    console.log('map iterator:', arguments);
+});
+console.log('map.size: ', map.size, '; map.has("hello"): ', map.has('hello'), '; map.get("hello"):', map.get('hello'));
+map.delete('hello');
+console.log('after delete [hello] key:', map);
+console.log('map.keys: ', map.keys(), '; map.values: ', map.values(), ';map.entries(): ', map.entries());
+map.clear();
+console.log('after map.clear():', map);
 
-// 循环时 symbol 会被过滤
-for (var key in person) {
-    console.log('for in: key =', key, '; value =', person[key]);
-}
+// Weak Maps, WeakMaps provides leak-free object-key’d side tables.
+var v = new WeakMap(),
+        keyObj = new Set('v');
+v.set(keyObj, {age: 30}).set({'userName': 'Daniel'}, {weight: 50}); // key must be object.
+console.log('v: ', v, '; v.size: ', v.size, '; v.has(keyObj): ', v.has(keyObj), '; v.get(keyObj):', v.get(keyObj));
+v.delete(keyObj);
+console.log('after delete keyObj:', v);
 
-// 获取 symbol
-console.log('Object.keys(person):', Object.keys(person));
-console.log('Object.getOwnPropertySymbols(person):', Object.getOwnPropertySymbols(person));
-
-// can't convert symbol to string
-var sym1 = Symbol();
-`your symbol is ${sym1}`;
+// Weak Sets
+var d = new WeakSet(), age = {age: 30};
+d.add(age).add({weight: 50});
+console.log('d: ', d, '; d.has(age): ', d.has(age));
+d.delete(age);
+console.log('after delete age: ', d);
+// Because the added object has no other references, it will not be held in the set
         </pre>
         <script>
             "use strict";
@@ -43,30 +59,39 @@ var sym1 = Symbol();
                 console.log('family iterator:', arguments);
             });
             console.log('family.size: ', family.size, '; family.has("Sunny"): ', family.has("Sunny"));
+            console.log('family.keys: ', family.keys(), '; family.values: ', family.values(), ';family.entries(): ', family.entries());
             family.clear();
             console.log('after family.clear():', family);
 
             // Maps
             var map = new Map();
-            map.set("hello", 'family');
-            family.add('Sunny');
-            map.set(family, 'father and mather, I love you');
-
+            map.set('hello', 'family').set('hi', 'son');
+            map.set(new Set('FAMILY'), 'father and mather, I love you');
+            map.forEach(function () {
+                console.log('map iterator:', arguments);
+            });
+            console.log('map.size: ', map.size, '; map.has("hello"): ', map.has('hello'), '; map.get("hello"):', map.get('hello'));
+            map.delete('hello');
+            console.log('after delete [hello] key:', map);
+            console.log('map.keys: ', map.keys(), '; map.values: ', map.values(), ';map.entries(): ', map.entries());
+            map.clear();
+            console.log('after map.clear():', map);
+            
             // Weak Maps, WeakMaps provides leak-free object-key’d side tables.
-            var wm = new WeakMap();
-            wm.set(s, {extra: 42});
-            wm.size === undefined
-
+            var v = new WeakMap(),
+                    keyObj = new Set('v');
+            v.set(keyObj, {age: 30}).set({'userName': 'Daniel'}, {weight: 50}); // key must be object.
+            console.log('v: ', v, '; v.size: ', v.size, '; v.has(keyObj): ', v.has(keyObj), '; v.get(keyObj):', v.get(keyObj));
+            v.delete(keyObj);
+            console.log('after delete keyObj:', v);
+            
             // Weak Sets
-            var ws = new WeakSet();
-            ws.add({data: 42});
+            var d = new WeakSet(), age = {age: 30};
+            d.add(age).add({weight: 50});
+            console.log('d: ', d, '; d.has(age): ', d.has(age));
+            d.delete(age);
+            console.log('after delete age: ', d);
             // Because the added object has no other references, it will not be held in the set
-            
-            
-
-            family.keys()
-            family.values()
-            family.entries()
         </script>
     </body>
 </html>
