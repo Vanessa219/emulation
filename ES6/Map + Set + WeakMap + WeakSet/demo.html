@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Symbols</title>
+        <title>Map + Set + WeakMap + WeakSet</title>
         <meta charset="UTF-8">
     </head>
     <body>
@@ -36,30 +36,37 @@ var sym1 = Symbol();
         </pre>
         <script>
             "use strict";
-            // 第七种原始类型
-            console.log('typeof(Symbol()) = ', typeof(Symbol()));
+            // Sets
+            var family = new Set();
+            family.add("Sunny").add("Vanessa").add("Erik").add('Daniel').delete('Sunny');
+            family.forEach(function () {
+                console.log('family iterator:', arguments);
+            });
+            console.log('family.size: ', family.size, '; family.has("Sunny"): ', family.has("Sunny"));
+            family.clear();
+            console.log('after family.clear():', family);
+
+            // Maps
+            var map = new Map();
+            map.set("hello", 'family');
+            family.add('Sunny');
+            map.set(family, 'father and mather, I love you');
+
+            // Weak Maps, WeakMaps provides leak-free object-key’d side tables.
+            var wm = new WeakMap();
+            wm.set(s, {extra: 42});
+            wm.size === undefined
+
+            // Weak Sets
+            var ws = new WeakSet();
+            ws.add({data: 42});
+            // Because the added object has no other references, it will not be held in the set
             
-            // symbol 获取
-            var person = {
-                name: 'vanessa',
-                age: 30
-            },
-            weight = Symbol("weight");
-            person[weight] = '45.5';
-            console.log('person[weight] =', person[weight], '; person.weight =', person.weight);
             
-            // 循环时 symbol 会被过滤
-            for (var key in person) {
-                console.log('for in: key =', key, '; value =', person[key]);
-            }
-            
-            // 获取 symbol
-            console.log('Object.keys(person):', Object.keys(person));
-            console.log('Object.getOwnPropertySymbols(person):', Object.getOwnPropertySymbols(person));
-            
-            // can't convert symbol to string
-            var sym1 = Symbol();
-            `your symbol is ${sym1}`;
+
+            family.keys()
+            family.values()
+            family.entries()
         </script>
     </body>
 </html>
