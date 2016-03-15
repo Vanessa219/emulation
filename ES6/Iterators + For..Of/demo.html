@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Iterators + For..Of</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <a href="http://www.infoq.com/cn/articles/es6-in-depth-iterators-and-the-for-of-loop" target="_blank">深入浅出ES6（二）：迭代器和for-of循环</a>
+        <pre>
+"use strict";
+// for - of循环不支持普通对象，但如果你想迭代一个对象的属性，你可以用for - in 或 Object.keys()方法
+// 当然，你可以给任意类型的对象添加迭代器方法
+let fibonacci = {
+    [Symbol.iterator]() {
+        let pre = 0, cur = 1;
+        return {
+            next() {
+                [pre, cur] = [cur, pre + cur];
+                return { done: false, value: cur };
+            }
+        };
+    }
+}
+
+for (var n of fibonacci) {
+    // truncate the sequence at 50
+    if (n > 50) {
+        break;
+    }
+    console.log(n);
+}
+        </pre>
+        <script>
+            "use strict";
+            // for - of循环不支持普通对象，但如果你想迭代一个对象的属性，你可以用for - in 或 Object.keys()方法
+            // 当然，你可以给任意类型的对象添加迭代器方法
+            let fibonacci = {
+                [Symbol.iterator]() {
+                    let pre = 0, cur = 1;
+                    return {
+                        next() {
+                            [pre, cur] = [cur, pre + cur];
+                            return { done: false, value: cur };
+                        }
+                    };
+                }
+            }
+            
+            for (var n of fibonacci) {
+                // truncate the sequence at 50
+                if (n > 50) {
+                    break;
+                }
+                console.log(n);
+            }
+        </script>
+    </body>
+</html>
