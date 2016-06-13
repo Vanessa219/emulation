@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Arrows</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <a href="http://www.infoq.com/cn/articles/es6-in-depth-modules" target="_blank">深入浅出ES6（十六）：模块 Modules</a> 
+        在ES6模块中，无论你是否加入“use strict;”语句，默认情况下模块都是在严格模式下运行
+        <pre>
+"use strict";
+var reduce = function (fn, sub) {
+    return fn(sub * 2) - sub;
+};
+// ES5
+var totalES5 = reduce(function (a) {
+    return a * 3;
+}, 20);
+// ES6
+var total = reduce(a => a * 3, 20);
+console.log('total = ', total);
+
+// 多个参数使用小括号, 多条语句使用大括号
+var sum = 0,
+    nums = [1, 2, 3], 
+    maps = [],
+    sumES5 = 0,
+    numsES5 = [2, 3, 4],
+    mapsES5 = [];
+// ES5
+numsES5.forEach(function (v, index, arrays) {
+    var data = {
+        index: index, 
+        value: v
+    };
+    sumES5 += v;
+    mapsES5.push(data);
+});
+// ES6
+nums.forEach((v, index, arrays) => {
+    var data = {
+        index: index, 
+        value: v
+    };
+    sum += v;
+    maps.push(data);
+});
+console.log('sum = ', sum, '; maps =', maps)
+
+// Lexical this
+var bob = {
+    _name: "Bob",
+    friends: [],
+    printFriends() {
+        this.friends.forEach(f => console.log(this._name + " knows " + f));
+    }
+};
+bob.friends = ['Daniel', 'Vanessa', 'Sam']
+bob.printFriends();
+        </pre>
+        <script src="dist/Modules/app.js"></script>
+    </body>
+</html>
