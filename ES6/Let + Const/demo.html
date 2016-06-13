@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Let + Const</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <a href="http://www.infoq.com/cn/articles/es6-in-depth-let-and-const" target="_blank">深入浅出ES6（十四）：let和const</a>
+        <p>let</p>
+        <ul>
+            <li>
+                声明的变量拥有块级作用域
+            </li>
+            <li>
+                声明的全局变量不是全局对象的属性
+            </li>
+            <li>
+                形如 for (let x...) 的循环在每次迭代时都为 x 创建新的绑定
+            </li>
+            <li>
+                声明的变量直到控制流到达该变量被定义的代码行时才会被装载，所以在到达之前使用该变量会触发错误
+            </li>
+            <li>
+                用 let 重定义变量会抛出一个语法错误（SyntaxError）
+            </li>
+        </ul>
+        <p>
+            const
+        </p>
+        <ul>
+            <li>声明的变量只可以在声明时赋值，不可随意修改</li>
+        </ul>
+        <pre>
+"use strict";
+let catSay = function () {
+    const FIRST_SENTENCE = "喵！";
+    try {
+        FIRST_SENTENCE = "喵！！";
+    } catch (e) {
+        console.log(e);   // TypeError: Assignment to constant variable.(…)
+    }
+
+    let secondSentence = "我是一只会说话的猫！";
+    try {
+        let secondSentence = "我是一只会说话的猫！！"; // Uncaught SyntaxError: Identifier 'secondSentence' has already been declared
+    } catch (e) {
+    }
+
+    let messages = [FIRST_SENTENCE, secondSentence, "回调（callback）非常有趣!"];
+    for (let i = 0; i < messages.length; i++) {
+        setTimeout(function () {
+            console.log(messages[i]);
+        }, i * 1000);
+    }
+}
+catSay();
+
+try {
+    window.catSay();
+} catch (e) {
+    console.log(e);   // TypeError: window.catSay is not a function(…)
+}
+        </pre>
+        <script>
+            "use strict";
+            let catSay = function () {
+                const FIRST_SENTENCE = "喵！";
+                try {
+                    FIRST_SENTENCE = "喵！！";
+                } catch (e) {
+                    console.log(e);   // TypeError: Assignment to constant variable.(…)
+                }
+                
+                let secondSentence = "我是一只会说话的猫！";
+                try {
+                    let secondSentence = "我是一只会说话的猫！！"; // Uncaught SyntaxError: Identifier 'secondSentence' has already been declared
+                } catch (e) {
+                }
+                
+                let messages = [FIRST_SENTENCE, secondSentence, "回调（callback）非常有趣!"];
+                for (let i = 0; i < messages.length; i++) {
+                    setTimeout(function () {
+                        console.log(messages[i]);
+                    }, i * 1000);
+                }
+            }
+            catSay();
+            
+            try {
+                window.catSay();
+            } catch (e) {
+                console.log(e);   // TypeError: window.catSay is not a function(…)
+            }
+        </script>
+    </body>
+</html>
