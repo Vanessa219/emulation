@@ -15,13 +15,17 @@
  */
 
 /**
- * @file module - math.
+ * @file modules - math.
  * 
  * @author <a href="mailto:liliyuan@fangstar.net">Liyuan Li</a>
  * @version 0.1.0.0, Jun 13, 2016 
  */
 "use strict";
-export function sum(x, y) {
+export {add as sum};
+export var pi = 3.141593;;
+
+function add (x, y) {
   return x + y;
-}
-export var pi = 3.141593;
+};
+
+

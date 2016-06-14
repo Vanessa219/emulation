@@ -15,13 +15,13 @@
  */
 
 /**
- * @file Destructuring.
+ * @file modules - exp.
  * 
  * @author <a href="mailto:liliyuan@fangstar.net">Liyuan Li</a>
  * @version 0.1.0.0, Feb 5, 2016 
  */
 "use strict";
-export * from "math";
+export * from "./math";
 export var e = 2.71828182846;
 export default function(x) {
     return Math.exp(x);

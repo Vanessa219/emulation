@@ -21,20 +21,23 @@
          * @version 0.1.0.0, Feb 19, 2016 
          */
         var gulp = require("gulp");
-var babel = require("gulp-babel");
 
 gulp.task("default", function () {
     // browserify + babelify or webpack + babel-loader.
     var browserify = require("browserify");
     var fs = require("fs");
-    browserify(["./ES6/Destructuring/demo.js"])
+//    browserify(["./ES6/Destructuring/demo.js"])
+//            .transform("babelify", {presets: ["es2015"]})
+//            .bundle()
+//            .pipe(fs.createWriteStream("./ES6/Destructuring/dist/demo.js"));
+    
+//    browserify(["./ES6/Modules/app.js"])
+//            .transform("babelify", {presets: ["es2015"]})
+//            .bundle()
+//            .pipe(fs.createWriteStream("./ES6/Modules/dist/app.js"));
+
+    browserify(["./ES6/Modules/app2.js"])
             .transform("babelify", {presets: ["es2015"]})
             .bundle()
-            .pipe(fs.createWriteStream("./ES6/Destructuring/dist/demo.js"));
-    
-    return gulp.src("./ES6/*/demo.js")
-            .pipe(babel({
-                "presets": ["es2015"]
-            }))
-            .pipe(gulp.dest("./ES6/dist/"));
+            .pipe(fs.createWriteStream("./ES6/Modules/dist/app2.js"));
 });

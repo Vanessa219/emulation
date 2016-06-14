@@ -15,11 +15,14 @@
  */
 
 /**
- * @file module - app.
+ * @file modules - app.
  * 
  * @author <a href="mailto:liliyuan@fangstar.net">Liyuan Li</a>
  * @version 0.1.0.0, Jun 13, 2016 
  */
 "use strict";
-import * as math from "math";
-console.log("2π = " + math.sum(math.pi, math.pi));
+import * as math from "./math";
+console.log("math.pi = " + math.pi);
+
+import {sum as add, pi} from "./math";
+console.log("2π = " + add(pi, pi));

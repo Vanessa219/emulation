@@ -15,11 +15,12 @@
  */
 
 /**
- * @file module - app2.
+ * @file modules - app3.
  * 
  * @author <a href="mailto:liliyuan@fangstar.net">Liyuan Li</a>
  * @version 0.1.0.0, Jun 13, 2016 
  */
 "use strict";
-import {sum, pi} from "math";
-console.log("2π = " + sum(pi, pi));
+import exp, {sum, pi, e} from "./mathplusplus";
+console.log("e^π = " + exp(pi));
+console.log("pi + e = " + sum(pi, e));
