@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Subclassing</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <a href="http://www.infoq.com/cn/articles/es6-in-depth-subclassing" target="_blank">深入浅出ES6（十五）：子类 Subclassing</a> 
+        <pre>
+"use strict";
+class Cat { 
+    constructor(name) {
+        this.name = name;
+        console.log(new.target);
+    }
+
+    speak() {
+        console.log(this.name + ' makes a noise.');
+    }
+}
+
+class Lion extends Cat {
+    speak() {
+        super.speak();
+        console.log(this.name + ' roars.');
+    }
+}
+
+var cat =  new Cat('mimi');
+cat.speak();
+var lion =  new Lion('sunny');
+lion.speak();
+        </pre>
+        <script>
+        "use strict";
+        class Cat { 
+            constructor(name) {
+                this.name = name;
+                console.log(new.target);  
+            }
+
+            speak() {
+                console.log(this.name + ' makes a noise.');
+            }
+        }
+
+        class Lion extends Cat {
+            speak() {
+                super.speak();
+                console.log(this.name + ' roars.');
+            }
+        }
+        
+        var cat =  new Cat('mimi');
+        cat.speak();
+        var lion =  new Lion('sunny');
+        lion.speak();
+        </script>
+    </body>
+</html>
