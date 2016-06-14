@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Classes</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <a href="http://www.infoq.com/cn/articles/es6-in-depth-classes" target="_blank">深入浅出ES6（十三）：类 Class</a> 
+        <pre>
+"use strict";
+class Circle {
+    constructor(radius) {
+        this.radius = radius;
+        Circle.circlesMade++;
+    };
+    static draw(circle, canvas) {
+        // Canvas绘制代码
+        console.log('draw ' + circle + ' on ' + canvas);
+        Circle.circlesMade++;
+    };
+    static get circlesMade() {
+        return !this._count ? 0 : this._count;
+    };
+    static set circlesMade(val) {
+        this._count = val;
+    };
+    area() {
+        return Math.pow(this.radius, 2) * Math.PI;
+    };
+    get radius() {
+        return this._radius;
+    };
+    set radius(radius) {
+        if (!Number.isInteger(radius))
+            throw new Error("圆的半径必须为整数。");
+        this._radius = radius;
+    };
+}
+
+Circle.draw('circle', 'canvas');    // draw circle on canvas
+Circle.draw('circle', 'canvas again');  // draw circle on canvas again
+console.log('circlesMade = ' + Circle.circlesMade); // circlesMade = 2
+Circle.circlesMade = 10;
+console.log('after "Circle.circlesMade = 10", circlesMade = ' + Circle.circlesMade);    // after "Circle.circlesMade = 10", circlesMade = 10
+
+var c = new Circle(2);
+console.log('radius = ' + c.radius);    // radius = 2
+console.log('area = ' + c.area());  // area = 12.566370614359172
+c.radius = 10.2;    // Uncaught Error: 圆的半径必须为整数。
+        </pre>
+        <script>
+            "use strict";
+            class Circle {
+                constructor(radius) {
+                    this.radius = radius;
+                    Circle.circlesMade++;
+                };
+                static draw(circle, canvas) {
+                    // Canvas绘制代码
+                    console.log('draw ' + circle + ' on ' + canvas);
+                    Circle.circlesMade++;
+                };
+                static get circlesMade() {
+                    return !this._count ? 0 : this._count;
+                };
+                static set circlesMade(val) {
+                    this._count = val;
+                };
+                area() {
+                    return Math.pow(this.radius, 2) * Math.PI;
+                };
+                get radius() {
+                    return this._radius;
+                };
+                set radius(radius) {
+                    if (!Number.isInteger(radius))
+                        throw new Error("圆的半径必须为整数。");
+                    this._radius = radius;
+                };
+            }
+            
+            Circle.draw('circle', 'canvas');
+            Circle.draw('circle', 'canvas again');
+            console.log('circlesMade = ' + Circle.circlesMade);
+            Circle.circlesMade = 10;
+            console.log('after "Circle.circlesMade = 10", circlesMade = ' + Circle.circlesMade);
+            
+            var c = new Circle(2);
+            console.log('radius = ' + c.radius);
+            console.log('area = ' + c.area());
+            c.radius = 10.2;
+        </script>
+    </body>
+</html>
