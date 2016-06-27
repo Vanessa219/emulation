@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Proxies</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <a href="http://www.infoq.com/cn/articles/es6-in-depth-proxies-and-reflect" target="_blank">深入浅出ES6（十二）：代理 Proxies</a> 
+        <p>
+            ECMAScript 标准委员会定义了 14 种内部方法组成的集合，亦即一个适用于所有对象的通用接口，属性、原型和函数这三种基础功能自然成为它们关注的核心。
+        </p>
+        <pre>
+var handler =
+{
+  // target.prop
+  get: ...,
+  // target.prop = value
+  set: ...,
+  // 'prop' in target
+  has: ...,
+  // delete target.prop
+  deleteProperty: ...,
+  // target(...args)
+  apply: ...,
+  // new target(...args)
+  construct: ...,
+  // Object.getOwnPropertyDescriptor(target, 'prop')
+  getOwnPropertyDescriptor: ...,
+  // Object.defineProperty(target, 'prop', descriptor)
+  defineProperty: ...,
+  // Object.getPrototypeOf(target), Reflect.getPrototypeOf(target),
+  // target.__proto__, object.isPrototypeOf(target), object instanceof target
+  getPrototypeOf: ...,
+  // Object.setPrototypeOf(target), Reflect.setPrototypeOf(target)
+  setPrototypeOf: ...,
+  // for (let i in target) {}
+  enumerate: ...,
+  // Object.keys(target)
+  ownKeys: ...,
+  // Object.preventExtensions(target)
+  preventExtensions: ...,
+  // Object.isExtensible(target)
+  isExtensible :...
+}
+        </pre>
+        <p>Code</p>
+        <pre>
+"use strict";
+// Proxying a normal object
+var target = {};
+var handler = {
+  get: function (receiver, name) {
+    return `Hello, ${name}!`;
+  }
+};
+
+var p = new Proxy(target, handler);
+console.log('p.world === ' + p.world);  // "Hello, world!"
+
+// Proxying a function object
+var target = function () { return "I am the target"; };
+var handler = {
+  apply: function (receiver, ...args) {
+    return "I am the proxy";
+  }
+};
+
+var p = new Proxy(target, handler);
+console.log('p() === ');  // "I am the proxy"
+        </pre>
+        <script>
+            "use strict";
+            // Proxying a normal object
+            var target = {};
+            var handler = {
+              get: function (receiver, name) {
+                return `Hello, ${name}!`;
+              }
+            };
+
+            var p = new Proxy(target, handler);
+            console.log('p.world === ' + p.world);  // "Hello, world!"
+           
+            // Proxying a function object
+            var target = function () { return "I am the target"; };
+            var handler = {
+              apply: function (receiver, ...args) {
+                return "I am the proxy";
+              }
+            };
+
+            var p = new Proxy(target, handler);
+            console.log('p() === ' + p());  // "I am the proxy"
+        </script>
+    </body>
+</html>
