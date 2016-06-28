@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Generators</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <a href="http://www.infoq.com/cn/articles/es6-in-depth-generators" target="_blank">深入浅出ES6（三）：生成器 Generators</a> &
+        <a href="http://www.infoq.com/cn/articles/es6-in-depth-generators-continued" target="_blank">深入浅出ES6（十一）：生成器 Generators，续篇</a> 
+        <pre>
+"use strict";
+// 生成器函数
+function* quips(name) {
+    yield "你好 " + name + "!";
+    if (name.startsWith("X")) {
+        yield "你的名字 " + name + "  首字母是X，这很酷！";
+    }
+    yield "我们下次再见！";
+}
+var iter = quips("X-man");
+console.log('iter.next(): ' + JSON.stringify(iter.next()));
+console.log('iter.next(): ' + JSON.stringify(iter.next()));
+console.log('iter.next(): ' + JSON.stringify(iter.next()));
+console.log('iter.next(): ' + JSON.stringify(iter.next()));
+
+// 生成器是迭代器
+function* range(start, stop) {
+    for (var i = start; i < stop; i++)
+      yield i;
+}
+for (var value of range(1, 3)) {
+    console.log("Ding! at floor #" + value);
+}
+
+// generator.next()的可选参数
+function* params(x){
+    var y = yield x + 2;
+    return y;
+}
+var gp = params(1);
+console.log('gp.next(): ' + JSON.stringify(gp.next()));
+// 参数传入 Generator 函数，作为上个阶段异步任务的返回结果，被函数体内的变量 y 接收
+console.log('gp.next(2): ' + JSON.stringify(gp.next(2)));
+
+// generator.throw(error)，生成器表现得像是yield表达式调用一个函数并抛出错误。
+function* gerror(x){
+    try {
+      var y = yield x + 2;
+    } catch (e){ 
+      console.log(e);
+    }
+    return y;
+}
+var ge = gerror(1);
+console.log('ge.next(): ' + JSON.stringify(ge.next()));
+// Generator 函数体外，使用指针对象的 throw 方法抛出的错误，可以被函数体内的 try ... catch 代码块捕获
+ge.throw('throw error msg');
+
+// yield*
+function* iterators(iter1) {
+    // 等同于
+    // for (var value of iter1) {
+    //     yield value;
+    // }
+    yield* iter1;
+}
+var i = iterators([1, 2, 3]);
+console.log('i.next(): ' + JSON.stringify(i.next()));
+// generator.return()，传递一个可选值，生成器只执行finally代码块并不再恢复执行。
+console.log('i.return("return"): ' + JSON.stringify(i.return('return')));
+
+
+// 生成器和异步代码
+// function makeNoise_async() {
+//      return Q.async(function* () {
+//         yield shake_async();
+//         yield rattle_async();
+//         yield roll_async();
+//     });
+// }
+        </pre>
+        <script>
+            "use strict";
+            // 生成器函数
+            function* quips(name) {
+                yield "你好 " + name + "!";
+                if (name.startsWith("X")) {
+                    yield "你的名字 " + name + "  首字母是X，这很酷！";
+                }
+                yield "我们下次再见！";
+            }
+            var iter = quips("X-man");
+            console.log('iter.next(): ' + JSON.stringify(iter.next()));
+            console.log('iter.next(): ' + JSON.stringify(iter.next()));
+            console.log('iter.next(): ' + JSON.stringify(iter.next()));
+            console.log('iter.next(): ' + JSON.stringify(iter.next()));
+            
+            // 生成器是迭代器
+            function* range(start, stop) {
+                for (var i = start; i < stop; i++)
+                  yield i;
+            }
+            for (var value of range(1, 3)) {
+                console.log("Ding! at floor #" + value);
+            }
+            
+            // generator.next()的可选参数
+            function* params(x){
+                var y = yield x + 2;
+                return y;
+            }
+            var gp = params(1);
+            console.log('gp.next(): ' + JSON.stringify(gp.next()));
+            // 参数传入 Generator 函数，作为上个阶段异步任务的返回结果，被函数体内的变量 y 接收
+            console.log('gp.next(2): ' + JSON.stringify(gp.next(2)));
+            
+            // generator.throw(error)，生成器表现得像是yield表达式调用一个函数并抛出错误。
+            function* gerror(x){
+                try {
+                  var y = yield x + 2;
+                } catch (e){ 
+                  console.log(e);
+                }
+                return y;
+            }
+            var ge = gerror(1);
+            console.log('ge.next(): ' + JSON.stringify(ge.next()));
+            // Generator 函数体外，使用指针对象的 throw 方法抛出的错误，可以被函数体内的 try ... catch 代码块捕获
+            ge.throw('throw error msg');
+            
+            // yield*
+            function* iterators(iter1) {
+                // 等同于
+                // for (var value of iter1) {
+                //     yield value;
+                // }
+                yield* iter1;
+            }
+            var i = iterators([1, 2, 3]);
+            console.log('i.next(): ' + JSON.stringify(i.next()));
+            // generator.return()，传递一个可选值，生成器只执行finally代码块并不再恢复执行。
+            console.log('i.return("return"): ' + JSON.stringify(i.return('return')));
+          
+            
+            // 生成器和异步代码
+            // function makeNoise_async() {
+            //      return Q.async(function* () {
+            //         yield shake_async();
+            //         yield rattle_async();
+            //         yield roll_async();
+            //     });
+            // }
+        </script>
+    </body>
+</html>
