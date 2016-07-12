@@ -16,8 +16,9 @@
     },
     "dependencies": {
         "gulp": "*",
-        "gulp-babel": "*",
+        "gulp-babel": "6.1.2",
         "babel-preset-es2015": "*",
+        "babel-preset-stage-1": "*",
         "babelify": "*",
         "browserify": "*"
     },

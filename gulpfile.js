@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2012-2016, b3log.org & hacpai.com & fangstar.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
-        /**
-         * @file emulation tool.
-         * 
-         * @author <a href="mailto:liliyuan@fangstar.net">Liyuan Li</a>
-         * @version 0.1.0.0, Feb 19, 2016 
-         */
-        var gulp = require("gulp");
+/**
+ * @file emulation tool.
+ * 
+ * @author <a href="mailto:liliyuan@fangstar.net">Liyuan Li</a>
+ * @version 0.1.0.0, Feb 19, 2016 
+ */
+"use strict";
+var gulp = require("gulp");
 
 gulp.task("default", function () {
     // browserify + babelify or webpack + babel-loader.
@@ -30,14 +31,20 @@ gulp.task("default", function () {
 //            .transform("babelify", {presets: ["es2015"]})
 //            .bundle()
 //            .pipe(fs.createWriteStream("./ES6/Destructuring/dist/demo.js"));
-    
+
 //    browserify(["./ES6/Modules/app.js"])
 //            .transform("babelify", {presets: ["es2015"]})
 //            .bundle()
 //            .pipe(fs.createWriteStream("./ES6/Modules/dist/app.js"));
 
-    browserify(["./ES6/Modules/app2.js"])
-            .transform("babelify", {presets: ["es2015"]})
-            .bundle()
-            .pipe(fs.createWriteStream("./ES6/Modules/dist/app2.js"));
+//    browserify(["./ES6/Modules/app2.js"])
+//            .transform("babelify", {presets: ["es2015"]})
+//            .bundle()
+//            .pipe(fs.createWriteStream("./ES6/Modules/dist/app2.js"));
+
+    var babel = require('gulp-babel')
+    gulp.src("./ES7/Exponentiation/demo.js")
+            .pipe(babel({presets: ["stage-1"]}))
+            .pipe(gulp.dest("./ES7/Exponentiation/dist"));
+
 });
