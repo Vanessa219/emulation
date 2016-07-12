@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>includes</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes" target="_blank">includes</a>
+        <pre>
+"use strict";
+/**
+ * @param {string|number} searchElement The element to search for.
+ * @param {number} [fromIndex = 0] The position in this array at which to begin searching for searchElement. A negative value searches from the index of array.length + fromIndex by asc. Defaults to 0.
+ * @type type
+ */
+// Syntax: var boolean = array.includes(searchElement[, fromIndex])
+console.log("[1, 2, 'hi, includes'].includes('hi, includes') = ", [1, 2, 'hi, includes'].includes('hi, includes'));     // true
+console.log("[1, 2, {foo: 3}].includes({foo: 3}) = ", [1, 2, {foo: 3}].includes({foo: 3}));     // false
+console.log("[1, 2, 3].includes(3, 3)) = ", [1, 2, 3].includes(3, 3));  // false
+console.log("[1, 2, 3].includes(3, -1) = ", [1, 2, 3].includes(3, -1)); // true
+console.log("[1, 2, NaN].includes(NaN)) = ", [1, 2, NaN].includes(NaN)); // true
+        </pre>
+        <script>
+            "use strict";
+            /**
+             * @param {string|number} searchElement The element to search for.
+             * @param {number} [fromIndex = 0] The position in this array at which to begin searching for searchElement. A negative value searches from the index of array.length + fromIndex by asc. Defaults to 0.
+             * @type type
+             */
+            // Syntax: var boolean = array.includes(searchElement[, fromIndex])
+            console.log("[1, 2, 'hi, includes'].includes('hi, includes') = ", [1, 2, 'hi, includes'].includes('hi, includes'));     // true
+            console.log("[1, 2, {foo: 3}].includes({foo: 3}) = ", [1, 2, {foo: 3}].includes({foo: 3}));     // false
+            console.log("[1, 2, 3].includes(3, 3)) = ", [1, 2, 3].includes(3, 3));  // false
+            console.log("[1, 2, 3].includes(3, -1) = ", [1, 2, 3].includes(3, -1)); // true
+            console.log("[1, 2, NaN].includes(NaN)) = ", [1, 2, NaN].includes(NaN)); // true
+        </script>
+    </body>
+</html>
